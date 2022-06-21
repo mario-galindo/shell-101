@@ -8,3 +8,11 @@ if [[ "$rg" != *learn* ]]; then
     rg=learn${rgsuffix}
     az group create --name $rg --location eastus --output none
 fi
+
+
+rglist=$rg
+searchstring="learn"
+
+rest=${rglist#*$searchstring}
+index=$(( ${#rglist} - ${#rest} - ${#searchstring} ))
+echo "Using the ${rglist:index:23} resource group..."
